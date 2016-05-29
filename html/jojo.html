@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sheldon.jojo</title>
+<style>
+*{margin:0;padding:0;list-style:none;}
+#ul1{ position:relative;width:660px; height:1000px;  margin:30px auto; overflow:hidden;}
+#ul1 li{ position:absolute;left:0;top:0;width:660px; height:100%;}
+#ul1 li img{width:100%; height:100%;} 
+#ul1 li span{ position:absolute;left:0;top:0;width:20px; height:100%;}
+#ul1 li span img{width:100%; height:100%;} 
+</style>
+<script src="move.js"></script>
+<script>
+
+window.onload = function(){
+	var oUl = document.getElementById("ul1");
+	var aLi = oUl.children;
+	var len = aLi.length; 
+	
+	//算ul宽度  840 + 20*(len - 1);
+ 	oUl.style.width = 660 + 20*(len - 1) + "px";
+	
+	//li定位 840+20*(n-1)
+	for(var i = 1; i < len; i++){
+		aLi[i].style.left = 660 + 20*(i - 1) + "px"; 
+	}
+	
+	//添加事件
+	for(var i = 0; i < len; i++){
+		
+		(function(index){
+			aLi[i].onmouseover = function(){
+				// left --> oLi  20*n
+				for(var i = 0; i < len; i++){
+					if(i <= index){
+						move(aLi[i],{left:i*20});
+					} else {
+						move(aLi[i],{left:660 + 20*(i - 1)});
+					}
+				}
+			};
+		})(i);
+	}
+	
+	
+};
+
+</script>
+</head>
+
+<body>
+
+<ul id="ul1">
+	<li><img src="imgjojo/jojo01.jpg" /><span ><img src="imgjojo/j1.jpg" /></span></li>
+	<li><img src="imgjojo/jojo02.jpg" /><span ><img src="imgjojo/j2.jpg" /></span></li>
+	<li><img src="imgjojo/jojo03.jpg" /><span ><img src="imgjojo/j3.jpg" /></span></li>
+	<li><img src="imgjojo/jojo04.jpg" /><span ><img src="imgjojo/j4.jpg" /></span></li>
+	<li><img src="imgjojo/jojo05.jpg" /><span ><img src="imgjojo/j5.jpg" /></span></li>
+	<li><img src="imgjojo/jojo06.jpg" /><span ><img src="imgjojo/j6.jpg" /></span></li>
+</ul>
+
+</body>
+</html>
