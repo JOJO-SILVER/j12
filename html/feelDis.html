@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>sheldon.feelDis</title>
+<style>
+#div1{ position:absolute;left:0;bottom:0;width:100%; overflow:hidden; text-align:center;}
+img{ width:70px;}
+
+</style>
+<script>
+window.onload = function(){
+	var oDiv = document.getElementById("div1");
+	var aImg = oDiv.children;
+	
+	document.onmousemove = function(ev){
+		var oEvent = ev || event;
+		var x1 = oEvent.clientX;
+		var y1 = oEvent.clientY;
+		
+		for(var i = 0; i < aImg.length; i++){
+			var x2 = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+			var y2 = aImg[i].offsetTop + aImg[i].offsetHeight/2 + oDiv.offsetTop;
+			
+			var x = x1 - x2;
+			var y = y1 - y2;
+			
+			var dis = Math.sqrt(x*x + y*y);
+			
+			//比例
+			var scale = 1 - dis/800;
+			
+			if(scale < 0.5){
+				scale = 0.5;
+			}
+			aImg[i].style.width = 140*scale +"px";
+		}	
+	};
+	
+ 
+};
+</script>
+</head>
+
+<body>
+<div id="div1">
+	<img src="imgmh/mh1.jpg">
+	<img src="imgmh/mh2.jpg">
+	<img src="imgmh/mh3.jpg">
+	<img src="imgmh/mh4.jpg">
+	<img src="imgmh/mh5.jpg">
+</div>
+
+</body>
+</html>
